@@ -1,0 +1,36 @@
+.grid {
+	width: 100%;
+	height: calc(100% - 21px);
+	position: absolute;
+	visibility: hidden;
+}
+
+.percent-complete-bar {
+	height:50%;
+	position:absolute;
+	top:25%
+}
+.cell-title {
+  font-weight: bold;
+}
+.format-checkMark {
+  text-align: center;
+}
+.good, .veryGood {
+  background-color: #aaffaa;
+}
+.bad {
+  background-color: #ff7777;
+}
+.veryBad {
+	background-color: #FF1111
+}
+.orange {
+  background-color: #ffbb66;
+}
+.ok {
+
+}
+.NA {
+	background-color: #ECE0D0
+}
