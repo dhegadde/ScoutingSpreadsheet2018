@@ -48,12 +48,14 @@ function dataSetup(){
 	}
 }
 
+
 function getData(){
 	teamReady = matchReady = false
-	if(!nw){
-		nw={App:{clearCashe:function(){}}}
+	try{
+		nw.App.clearCache()
+	}catch(e){
+		console.info("NWJS not present")
 	}
-	nw.App.clearCache()
 	getMatchData=$.getJSON("http://192.168.1.2/matchData.json");
 	getTeamData=$.getJSON("http://192.168.1.2/teamData.json");
 	matchDataHelper()

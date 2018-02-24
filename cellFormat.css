@@ -3,6 +3,7 @@
 	height: calc(100% - 21px);
 	position: absolute;
 	visibility: hidden;
+	overflow: auto;
 }
 
 .percent-complete-bar {

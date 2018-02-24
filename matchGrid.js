@@ -69,12 +69,18 @@ function timeFormat(row, cell, value, columnDef, dataContext){
 function specificGrid(name, type, data){
 	setVisiblity("specificGrid")
 	document.getElementById("subNav").innerHTML="< "+name
+	
 	var columns
 	if(type=="switch"){
 		columns=[
-		{id:"type", name:"Type", field:"type"},
-		{id:"time", name:"Time", field:"time", formatter: timeFormat}
+			{id:"type", name:"Type", field:"type"},
+			{id:"time", name:"Time", field:"time", formatter: timeFormat}
 		]
+		
+		document.getElementById("x").onclick=()=>setVisiblity('matchGrid')
+	}else if(type="teams"){
+		columns=teamColumns
+		document.getElementById("x").onClick=()=>setVisiblity('teamGrid')
 	}
 	
 	var options = {
@@ -84,10 +90,14 @@ function specificGrid(name, type, data){
 	};
 	
 	grid.specific = new Slick.Grid("#specificGrid", data, columns, options);
+	$("#specificGrid")[0].onresize=grid.specific.resizeCanvas
 }
 
 var matchData
 function matchGridSetup() {
+	specificGrid("Error","switch",{})
+	setVisiblity("teamGrid")
+	
 	var columns = [
 		{id: "match", name: "Match", field: "matchID", width:64, resizable:false, sortable:true, cssClass: "cell-title"},
 		{id: "teamNumber", name: "Team", field: "team", width:64, resizable:false, sortable:true, cssClass: "cell-title"},

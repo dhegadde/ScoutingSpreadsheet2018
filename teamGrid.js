@@ -55,9 +55,19 @@ function cubePercent(row, cell, value, columnDef, dataContext){
     return "<span class='percent-complete-bar' style='background:" + color + ";width:" + value + "px;'></span>";
 }
 
+var selectedTeams=[]
+function chooseSortTeams(){
+	selectedTeams=prompt("Enter teams separated by commas",selectedTeams).split(",")
+	
+	for(var i=0;i<selectedTeams.length;i++){
+		selectedTeams[i]-=0
+	}
+}
+
+var teamColumns;
 function teamGridSetup() {
 
-	var columns = [
+	teamColumns = [
 		{id: "team", name: "Team", field: "team", width:64, resizable:false, sortable:true, cssClass: "cell-title"},
 		{id: "name", name: "Name", field: "name", minWidth:128, width:256, cssClass: "cell-title"},
 		{id: "gscore", name: "G Score", field: "gscore", sortable:true, formatter:comparisonFormatter},
@@ -91,7 +101,7 @@ function teamGridSetup() {
 		team.matchTotal++
 	}
 	
-	grid.team = new Slick.Grid("#teamGrid", teamData, columns, options);
+	grid.team = new Slick.Grid("#teamGrid", teamData, teamColumns, options);
 	
 	var cubeNumCells=document.getElementsByClassName("cubeNum")
 	for(var i=0;i<teamData.length;i++){

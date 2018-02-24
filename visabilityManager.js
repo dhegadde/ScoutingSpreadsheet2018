@@ -8,9 +8,30 @@ function setVisiblity(who){
 	
 	if(who=="specificGrid"){
 		$("#x")[0].style.visibility="visible"
+		$("#x")[0].innerHTML="X"
 		$("#subNav")[0].style.visibility="visible"
 	}
+	
+	if(who=="teamGrid"){
+		$("#x")[0].style.visibility="visible"
+		$("#subNav")[0].style.visibility="visible"
+		$("#subNav")[0].innerHTML="No Filter"
+		$("#x")[0].innerHTML="Change Filter"
+		$("#x")[0].onclick=chooseSortTeams
+	}
 	$("#"+who)[0].style.visibility="visible"
+}
+
+var win
+try{
+	win = nw.Window.get();
+	win.on("resize", ()=>{
+		$(".grid")[0].onresize()
+		$(".grid")[1].onresize()
+		$(".grid")[2].onresize()
+	})
+}catch(e){
+	
 }
 
 function getRGB(n){
